@@ -61,4 +61,18 @@ class Diffusion:
                     uy = (temp_space[i+1][j] - 2*temp_space[i][j] + temp_space[i-1][j])
                     du = 0.0001*(ux+uy)
                     self.space[i-1][j-1] += du
-            
+
+def main():
+    t = time()
+    space1 = Diffusion(11,15,[2, 2, 1, 1], 11*[0], 11*[0], 15*[1], 15*[1]) 
+    space1.set_cell([4,6],[5,9],1)
+    space1.set_cell([0,2],[0,2],1)
+    space1.next_step(10000)
+    space1.print_space()
+    print(space1.left_bc)
+    print(space1.top_bc)
+    dt = time()-t
+    print(dt)
+  
+if __name__ == "__main__":
+    main()
